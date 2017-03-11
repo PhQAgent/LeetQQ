@@ -1,7 +1,7 @@
 <?php
 namespace protocol\method;
 
-use PeratX\SimpleFramework\Console\Logger;
+use iTXTech\SimpleFramework\Console\Logger;
 use phqagent\utils\Curl;
 
 class WebQQLogin{

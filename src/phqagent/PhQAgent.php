@@ -2,8 +2,8 @@
 
 namespace phqagent;
 
-use PeratX\SimpleFramework\Console\Logger;
-use PeratX\SimpleFramework\Module\Module;
+use iTXTech\SimpleFramework\Console\Logger;
+use iTXTech\SimpleFramework\Module\Module;
 use phqagent\message\MessageQueue;
 use protocol\Protocol;
 

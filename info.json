@@ -1,10 +1,10 @@
 {
-  "name": "PhQAgent-NextGeneration",
-  "version": "1.0.0-NG",
+  "name": "LeetQQ",
+  "version": "1.0.0",
   "api": 4,
-  "description": "WebQQ API for PHP",
+  "description": "SmartQQ API for PHP",
   "author": "PhQAgent Team",
   "main": "phqagent\\PhQAgent",
-  "order": 1,
-  "website": "https://github.com/PhQAgent/PhQAgent"
+  "order": 0,
+  "website": "https://github.com/PhQAgent/LeetQQ"
 }

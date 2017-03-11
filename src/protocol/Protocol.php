@@ -1,8 +1,8 @@
 <?php
 namespace protocol;
 
-use PeratX\SimpleFramework\Console\Logger;
-use PeratX\SimpleFramework\Console\TextFormat;
+use iTXTech\SimpleFramework\Console\Logger;
+use iTXTech\SimpleFramework\Console\TextFormat;
 use phqagent\element\FriendList;
 use phqagent\element\Group;
 use phqagent\element\GroupList;
