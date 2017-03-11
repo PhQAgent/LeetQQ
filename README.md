@@ -1,7 +1,7 @@
 LeetQQ
 ===========
 
-__运行于 [SimpleFramework](https://github.com/iTXTech/SimpleFramework) 之上，基于 SmartQQ 协议的QQ机器框架。__
+__运行于 [SimpleFramework](https://github.com/iTXTech/SimpleFramework) 之上，基于 SmartQQ 协议的QQ机器人框架。__
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -18,7 +18,8 @@ __运行于 [SimpleFramework](https://github.com/iTXTech/SimpleFramework) 之上
 
 介绍
 -----------
-本程序基于由 PhQAgent Team 开发的 PhQAgent 修改而成。可通过 [SimpleFramework](https://github.com/iTXTech/SimpleFramework) 实现方便易用的模块化 QQ 机器人开发。
+本程序基于由 PhQAgent Team 开发的 PhQAgent 修改而成。<br>
+可通过 [SimpleFramework](https://github.com/iTXTech/SimpleFramework) 实现方便易用的模块化 QQ 机器人开发。
 
 获取 LeetQQ
 -----------
