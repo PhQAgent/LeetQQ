@@ -14,6 +14,8 @@ class PhQAgent extends Module{
 	/** @var Protocol */
 	private $protocol;
 	private $queue;
+	/** @var LeetQQListener[] */
+	private $listeners = [];
 
 	public function load(){
 		define('phqagent\BASE_DIR', $this->getDataFolder());
@@ -29,8 +31,20 @@ class PhQAgent extends Module{
 			$this->unload();
 		}
 		$final = time();
-		$starttime = $final - $start;
-		Logger::info("PhQAgent系统完成加载! 耗时 $starttime 秒");
+		$startTime = $final - $start;
+		Logger::info("PhQAgent系统完成加载! 耗时 $startTime 秒");
+	}
+
+	public function registerListener(LeetQQListener $listener){
+		$this->listeners[] = $listener;
+	}
+
+	public function doTick(int $currentTick){
+		while($message = MessageQueue::getInstance()->getMessage()){
+			foreach($this->listeners as $listener){
+				$listener->onMessageReceive($message);
+			}
+		}
 	}
 
 	public function unload(){
@@ -38,7 +52,7 @@ class PhQAgent extends Module{
 		try{
 			$this->shutdown = true;
 			$this->protocol->shutdown();
-		}catch(\Error $e){
+		}catch(\Throwable $e){
 
 		}
 	}

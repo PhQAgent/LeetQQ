@@ -40,7 +40,7 @@ abstract class FriendList{
         return false;
     }
 
-    public static function getUserbyMark($mark){
+	public static function getUserByMark($mark){
         if(!isset(self::$cache)){
             self::$cache = Protocol::getInstance()->getFriendList();
         }
@@ -49,6 +49,7 @@ abstract class FriendList{
                 return new User($uin);
             }
         }
+		return false;
     }
 
 }

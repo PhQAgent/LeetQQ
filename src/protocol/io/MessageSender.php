@@ -1,11 +1,11 @@
 <?php
 namespace protocol\io;
 
-use phqagent\message\MessageQueue;
+use iTXTech\SimpleFramework\Console\Logger;
 use phqagent\message\Message;
-use protocol\SavedSession;
+use phqagent\message\MessageQueue;
 use phqagent\utils\Curl;
-use phqagent\console\Logger;
+use protocol\SavedSession;
 
 class MessageSender extends \Thread{
 
@@ -13,6 +13,7 @@ class MessageSender extends \Thread{
     private $cookie;
     private $outbox;
     private $retry;
+	private $shutdown = false;
 
     public function __construct(){
         $this->messageid = mt_rand(10000000, 90000000);
@@ -26,7 +27,7 @@ class MessageSender extends \Thread{
 
     public function run(){
         $curl = new Curl();
-        while(!$this->shutdown){
+		while(!$this->isTerminated()){
 
             while(count($this->outbox) > 0){
                 $serialized = $this->outbox->shift();
@@ -86,7 +87,7 @@ class MessageSender extends \Thread{
         }
     }
 
-    private function sendUser($curl, $uin, $content){
+	private function sendUser(Curl $curl, $uin, $content){
         $this->messageid++;
         $json = $curl->
         setUrl('http://d1.web2.qq.com/channel/send_buddy_msg2')->
@@ -115,7 +116,7 @@ class MessageSender extends \Thread{
         return true;
     }
 
-    private function sendGroup($curl, $uin, $content){
+	private function sendGroup(Curl $curl, $uin, $content){
         $this->messageid++;
         $json = $curl->
         setUrl('http://d1.web2.qq.com/channel/send_qun_msg2')->
@@ -147,5 +148,5 @@ class MessageSender extends \Thread{
     public function shutdown(){
         $this->shutdown = true;
     }
-    
+
 }

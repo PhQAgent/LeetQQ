@@ -1,9 +1,9 @@
 <?php
 namespace protocol\io;
 
-use protocol\SavedSession;
 use phqagent\message\MessageQueue;
 use phqagent\utils\Curl;
+use protocol\SavedSession;
 
 class MessageReceiver extends \Thread{
 
@@ -55,7 +55,6 @@ class MessageReceiver extends \Thread{
                             'content' => $content,
                         ];
                         break;
-                        
                     case 'group_message':
                         $message = [
                             'type' => 2,
@@ -65,7 +64,9 @@ class MessageReceiver extends \Thread{
                         ];
                         break;
                 }
-                $this->inbox[] = serialize($message);
+				if(isset($message)){
+					$this->inbox[] = serialize($message);
+				}
             }
         }
     }

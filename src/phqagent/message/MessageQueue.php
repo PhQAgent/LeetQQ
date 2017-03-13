@@ -1,10 +1,11 @@
 <?php
 namespace phqagent\message;
-use phqagent\console\Logger;
+
+use iTXTech\SimpleFramework\Console\Logger;
+
 class MessageQueue extends \Threaded{
 
     private static $instance;
-    private $protocol;
     private $inbox;
     private $outbox;
 
@@ -17,8 +18,11 @@ class MessageQueue extends \Threaded{
     public static function getInstance(){
         return self::$instance;
     }
-    
-    public function getMessage(){
+
+	/**
+	 * @return Message|bool
+	 */
+	public function getMessage(){
         if(count($this->inbox) > 0){
             $msg = $this->inbox->shift();
             return (new Message())->receive($msg);
@@ -27,8 +31,7 @@ class MessageQueue extends \Threaded{
     }
 
     public function sendMessage(Message $message){
-        $class = @end(explode('\\', debug_backtrace()[3]['class']));
-        Logger::info("[Plugin $class] $message");
+		Logger::info("$message");
         $message = serialize([
             'type' => $message->getType(),
             'target' => $message->getTarget()->getUin(),
