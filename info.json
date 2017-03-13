@@ -4,7 +4,7 @@
   "api": 4,
   "description": "SmartQQ API for PHP",
   "author": "PhQAgent Team",
-  "main": "phqagent\\PhQAgent",
+  "main": "phqagent\\LeetQQ",
   "order": 0,
   "website": "https://github.com/PhQAgent/LeetQQ"
 }

@@ -7,8 +7,11 @@ use iTXTech\SimpleFramework\Module\Module;
 use phqagent\message\MessageQueue;
 use protocol\Protocol;
 
-class PhQAgent extends Module{
+class LeetQQ extends Module{
 	const PROJECT = '青 Aoi';
+
+	/** @var LeetQQ */
+	private static $obj;
 
 	private $shutdown;
 	/** @var Protocol */
@@ -18,6 +21,7 @@ class PhQAgent extends Module{
 	private $listeners = [];
 
 	public function load(){
+		self::$obj = $this;
 		define('phqagent\BASE_DIR', $this->getDataFolder());
 		@mkdir($this->getDataFolder());
 		Logger::info('PhQAgent Codename: [' . self::PROJECT . '] Version: ' . $this->getInfo()->getVersion());
@@ -33,6 +37,10 @@ class PhQAgent extends Module{
 		$final = time();
 		$startTime = $final - $start;
 		Logger::info("PhQAgent系统完成加载! 耗时 $startTime 秒");
+	}
+
+	public static function getInstance(): LeetQQ{
+		return self::$obj;
 	}
 
 	public function registerListener(LeetQQListener $listener){
