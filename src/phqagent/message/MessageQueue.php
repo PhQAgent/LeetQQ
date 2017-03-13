@@ -1,8 +1,6 @@
 <?php
 namespace phqagent\message;
 
-use iTXTech\SimpleFramework\Console\Logger;
-
 class MessageQueue extends \Threaded{
 
     private static $instance;
@@ -31,7 +29,6 @@ class MessageQueue extends \Threaded{
     }
 
     public function sendMessage(Message $message){
-		Logger::info("$message");
         $message = serialize([
             'type' => $message->getType(),
             'target' => $message->getTarget()->getUin(),
