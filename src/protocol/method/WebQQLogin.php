@@ -51,7 +51,6 @@ class WebQQLogin{
 
 	private function displayQRCode($code){
 		echo PHP_EOL . PHP_EOL;
-		file_put_contents("1.png", $code);
 		$image = imagecreatefromstring($code);
 		for($y = 0; $y < imagesy($image); $y = $y + 3){
 			$log = "";
@@ -98,12 +97,7 @@ class WebQQLogin{
 		}
 		$this->qrcookie = $cookie;
 		$this->curlrs = explode("\r\n\r\n", $qrpacket);
-		$img = '';
-		/*for($i = 11; $i < count($this->curlrs); $i++){
-			$img .= "{$this->curlrs[$i]}\n";
-		}*/
 		$this->qrcode = end($this->curlrs);
-		//file_put_contents(\phqagent\BASE_DIR . 'QRCode.png', $img);
 	}
 
 	private function checkQRCode(){
