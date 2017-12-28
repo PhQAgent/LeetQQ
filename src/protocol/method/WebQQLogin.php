@@ -51,10 +51,11 @@ class WebQQLogin{
 
 	private function displayQRCode($code){
 		echo PHP_EOL . PHP_EOL;
+		file_put_contents("1.png", $code);
 		$image = imagecreatefromstring($code);
-		for($y = 0; $y < imagesy($image); $y = $y + 5){
+		for($y = 0; $y < imagesy($image); $y = $y + 3){
 			$log = "";
-			for($x = 0; $x < imagesx($image); $x = $x + 5){
+			for($x = 0; $x < imagesx($image); $x = $x + 3){
 				$rgb = imagecolorat($image, $x, $y);
 				$log .= $rgb != 0 ? chr(220) . chr(220) : "  ";
 			}
@@ -83,9 +84,9 @@ class WebQQLogin{
 		setUrl('https://ssl.ptlogin2.qq.com/ptqrshow')->
 		setGet([
 			'appid' => 501004106,
-			'e' => 0,
+			'e' => 2,
 			'l' => 'M',
-			's' => 5,
+			's' => 3,
 			'd' => 72,
 			'v' => 4,
 		])->
@@ -96,12 +97,12 @@ class WebQQLogin{
 			throw new \Exception('doQRCode');
 		}
 		$this->qrcookie = $cookie;
-		$this->curlrs = explode("\n", $qrpacket);
+		$this->curlrs = explode("\r\n\r\n", $qrpacket);
 		$img = '';
-		for($i = 11; $i < count($this->curlrs); $i++){
+		/*for($i = 11; $i < count($this->curlrs); $i++){
 			$img .= "{$this->curlrs[$i]}\n";
-		}
-		$this->qrcode = $img;
+		}*/
+		$this->qrcode = end($this->curlrs);
 		//file_put_contents(\phqagent\BASE_DIR . 'QRCode.png', $img);
 	}
 
