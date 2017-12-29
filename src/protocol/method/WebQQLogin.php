@@ -52,9 +52,9 @@ class WebQQLogin{
 	private function displayQRCode($code){
 		echo PHP_EOL . PHP_EOL;
 		$image = imagecreatefromstring($code);
-		for($y = 0; $y < imagesy($image); $y = $y + 3){
+		for($y = 0; $y < imagesy($image); $y = $y + 1){
 			$log = "";
-			for($x = 0; $x < imagesx($image); $x = $x + 3){
+			for($x = 0; $x < imagesx($image); $x = $x + 1){
 				$rgb = imagecolorat($image, $x, $y);
 				$log .= $rgb != 0 ? chr(220) . chr(220) : "  ";
 			}
@@ -85,7 +85,7 @@ class WebQQLogin{
 			'appid' => 501004106,
 			'e' => 2,
 			'l' => 'M',
-			's' => 3,
+			's' => 1,
 			'd' => 72,
 			'v' => 4,
 		])->
